@@ -1,0 +1,17 @@
+#
+# Git exclusions
+#
+
+# R files
+.RData
+.Rhistory
+
+# large data files
+*.zip
+*.csv
+
+# generated files
+*.md
+
+# change command
+change

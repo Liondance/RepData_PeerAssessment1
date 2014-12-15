@@ -1,0 +1,52 @@
+---
+title: "Reproducible Research: Peer Assessment 1"
+author: "Enzo Alda"
+date: "Sunday, December 14, 2014"
+output: 
+  html_document:
+    keep_md: true
+---
+
+### Load libraries
+
+```{r}
+library(ggplot2)
+```
+
+### Load and preprocess data
+
+```{r}
+data <- read.csv("activity.csv");
+times <- paste(as.character(as.integer(data$interval / 100)), as.character(data$interval %% 100), sep=":");
+# Add proper timestamp column
+data$time <- strptime(paste(data$date, times), format = "%Y-%m-%d %H:%M");
+# Convert *date* field to proper Date
+data$date <- as.Date(data$date);
+# Add weekday column
+data$weekday <- weekdays(data$date);
+# Remove useless interval column
+data$interval <- NULL;
+```
+
+```{r}
+# Check data types
+str(data);
+# show summary
+summary(data);
+```
+
+### Check mean and median for the total number of steps taken per day
+```{r}
+mean(data$steps, na.rm = T)
+median(data$steps, na.rm = T)
+```
+
+### What is the average daily activity pattern?
+
+
+
+### Imputing missing values
+
+
+
+### Are there differences in activity patterns between weekdays and weekends?
