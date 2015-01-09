@@ -60,12 +60,19 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div id="load-libraries" class="section level3">
 <h3>Load libraries</h3>
-<pre class="r"><code>library(ggplot2)</code></pre>
+<pre class="r"><code>library(ggplot2);
+library(psych);</code></pre>
+<pre><code>## 
+## Attaching package: 'psych'
+## 
+## The following object is masked from 'package:ggplot2':
+## 
+##     %+%</code></pre>
 </div>
 <div id="load-and-preprocess-data" class="section level3">
 <h3>Load and preprocess data</h3>
 <pre class="r"><code>data &lt;- read.csv(&quot;activity.csv&quot;);
-times &lt;- paste(as.character(as.integer(data$interval / 100)), as.character(data$interval %% 100), sep=&quot;:&quot;)
+times &lt;- paste(as.character(as.integer(data$interval / 100)), as.character(data$interval %% 100), sep=&quot;:&quot;);
 # Add proper timestamp column
 data$time &lt;- strptime(paste(data$date, times), format = &quot;%Y-%m-%d %H:%M&quot;);
 # Convert *date* field to proper Date
@@ -74,14 +81,15 @@ data$date &lt;- as.Date(data$date);
 data$weekday &lt;- weekdays(data$date);
 # Remove useless interval column
 data$interval &lt;- NULL;</code></pre>
-<pre class="r"><code># Check data types - show summary
+<pre class="r"><code># Check data types
 str(data);</code></pre>
 <pre><code>## 'data.frame':    17568 obs. of  4 variables:
 ##  $ steps  : int  NA NA NA NA NA NA NA NA NA NA ...
 ##  $ date   : Date, format: &quot;2012-10-01&quot; &quot;2012-10-01&quot; ...
 ##  $ time   : POSIXlt, format: &quot;2012-10-01 00:00:00&quot; &quot;2012-10-01 00:05:00&quot; ...
 ##  $ weekday: chr  &quot;Monday&quot; &quot;Monday&quot; &quot;Monday&quot; &quot;Monday&quot; ...</code></pre>
-<pre class="r"><code>summary(data);</code></pre>
+<pre class="r"><code># show summary
+summary(data);</code></pre>
 <pre><code>##      steps             date                 time                    
 ##  Min.   :  0.00   Min.   :2012-10-01   Min.   :2012-10-01 00:00:00  
 ##  1st Qu.:  0.00   1st Qu.:2012-10-16   1st Qu.:2012-10-16 05:58:45  
@@ -101,21 +109,84 @@ str(data);</code></pre>
 </div>
 <div id="check-mean-and-median-for-the-total-number-of-steps-taken-per-day" class="section level3">
 <h3>Check mean and median for the total number of steps taken per day</h3>
-<pre class="r"><code>hist(data$steps)</code></pre>
-<p><img src="data:image/png;base64,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" /></p>
-<pre class="r"><code>mean(data$steps, na.rm = T)</code></pre>
-<pre><code>## [1] 37.3826</code></pre>
-<pre class="r"><code>median(data$steps, na.rm = T)</code></pre>
-<pre><code>## [1] 0</code></pre>
+<pre class="r"><code># What is mean total number of steps taken per day?
+# For this part of the assignment, you can ignore the missing values in the dataset.
+# Make a histogram of the total number of steps taken each day
+# Calculate and report the mean and median total number of steps taken per day
+
+tapply(data$steps, data$weekday, mean, na.rm = T)</code></pre>
+<pre><code>##    Friday    Monday  Saturday    Sunday  Thursday   Tuesday Wednesday 
+##  42.91567  34.63492  43.52579  42.63095  28.51649  31.07485  40.94010</code></pre>
+<pre class="r"><code>tapply(data$steps, data$weekday, median, na.rm = T)</code></pre>
+<pre><code>##    Friday    Monday  Saturday    Sunday  Thursday   Tuesday Wednesday 
+##         0         0         0         0         0         0         0</code></pre>
+<pre class="r"><code>describeBy(data$steps, data$weekday, na.rm = T)</code></pre>
+<pre><code>## group: Friday
+##   vars    n  mean     sd median trimmed mad min max range skew kurtosis
+## 1    1 2016 42.92 121.61      0    9.43   0   0 802   802 3.77    14.76
+##     se
+## 1 2.71
+## -------------------------------------------------------- 
+## group: Monday
+##   vars    n  mean     sd median trimmed mad min max range skew kurtosis
+## 1    1 2016 34.63 114.85      0    6.34   0   0 789   789 4.55    21.27
+##     se
+## 1 2.56
+## -------------------------------------------------------- 
+## group: Saturday
+##   vars    n  mean     sd median trimmed mad min max range skew kurtosis
+## 1    1 2016 43.53 120.33      0   10.89   0   0 785   785 3.74    14.39
+##     se
+## 1 2.68
+## -------------------------------------------------------- 
+## group: Sunday
+##   vars    n  mean     sd median trimmed mad min max range skew kurtosis
+## 1    1 2016 42.63 108.94      0    12.8   0   0 785   785 3.56    13.52
+##     se
+## 1 2.43
+## -------------------------------------------------------- 
+## group: Thursday
+##   vars    n  mean    sd median trimmed mad min max range skew kurtosis
+## 1    1 2304 28.52 99.67      0    4.17   0   0 759   759 4.71    23.03
+##     se
+## 1 2.08
+## -------------------------------------------------------- 
+## group: Tuesday
+##   vars    n  mean    sd median trimmed mad min max range skew kurtosis
+## 1    1 2592 31.07 99.23      0    6.46   0   0 806   806 4.89    26.86
+##     se
+## 1 1.95
+## -------------------------------------------------------- 
+## group: Wednesday
+##   vars    n  mean     sd median trimmed mad min max range skew kurtosis
+## 1    1 2304 40.94 119.82      0    9.05   0   0 766   766 4.02    16.84
+##    se
+## 1 2.5</code></pre>
 </div>
 <div id="what-is-the-average-daily-activity-pattern" class="section level3">
 <h3>What is the average daily activity pattern?</h3>
+<pre class="r"><code># Make a time series plot (i.e. type = &quot;l&quot;) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
+# Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?</code></pre>
 </div>
 <div id="imputing-missing-values" class="section level3">
 <h3>Imputing missing values</h3>
+<pre class="r"><code># Note that there are a number of days/intervals where there are missing values (coded as NA). The presence of missing days may introduce bias into some calculations or summaries of the data.
+
+# Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
+
+# Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
+
+# Create a new dataset that is equal to the original dataset but with the missing data filled in.
+
+# Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?</code></pre>
 </div>
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level3">
 <h3>Are there differences in activity patterns between weekdays and weekends?</h3>
+<pre class="r"><code># For this part the weekdays() function may be of some help here. Use the dataset with the filled-in missing values for this part.
+
+# Create a new factor variable in the dataset with two levels - &quot;weekday&quot; and &quot;weekend&quot; indicating whether a given date is a weekday or weekend day.
+
+# Make a panel plot containing a time series plot (i.e. type = &quot;l&quot;) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.</code></pre>
 </div>
 
 
