@@ -11,6 +11,7 @@ output:
 ### Load libraries
 
 ```{r}
+library(lattice);
 library(psych);
 library(sfsmisc);
 ```
@@ -78,9 +79,7 @@ Calculate and report the total number of missing values in the dataset
 sum(is.na(data$interval))
 ```
 
-Define function for imputing values
-Our strategy would be to replace missing values (NA steps) with the mean number
-of steps for the corresponding interval in the corresponding weekday.
+We now create a new data set with no missing values. Our imputing strategy is to replace missing values (NA steps) with the mean number of steps (rounded to the nearest integer) for the corresponding interval in the corresponding weekday.
 ```{r}
 # function 'round.mean' returns the rounded value of the mean of a vector
 round.mean <- function(v) {
@@ -89,6 +88,11 @@ round.mean <- function(v) {
 
 # Overall estimates
 estimates <- aggregate(steps ~ weekday + interval, data=data, FUN=round.mean);
+
+# Function that returns the number of imputed steps for a given weekday/interval
+imputed.steps <- function(weekday, interval) {
+    estimates[estimates$weekday==weekday &  estimates$interval==interval,]$steps
+}
 
 # Prepare new data set
 pdata <- data;
@@ -120,23 +124,33 @@ pdata$wday[  pdata$weekday %in% c("Saturday", "Sunday") ] <- "weekend";
 pdata$wday[!(pdata$weekday %in% c("Saturday", "Sunday"))] <- "workday";
 pdata$wday <- as.factor(pdata$wday);
 
-par(mfcol=c(1, 2));
+pdata.workday <- pdata[pdata$wday == "workday", ];
+pdata.weekend <- pdata[pdata$wday == "weekend", ];
 
-plot.ts(pdata[pdata$wday == "workday",]$steps,
-        main="Average Daily Steps\nWeekdays and Weekends compared", 
-        ylab = "Average Steps", 
-        xlab = "Time in Hours",
-        axes = FALSE,
-        col="red") 
-axis(1,seq(0, 288, 24), label = seq(0,24, 2))
-axis(2)
-plot.ts(pdata[pdata$wday == "weekend",]$steps,
-        axes=FALSE,
-        xlab=NULL,
-        ylab=NULL,
-        col="blue") 
-axis(1,seq(0, 288, 24), label = seq(0,24, 2))
-axis(2)
-legend("topright", c("Weekdays", "Weekends"), lty=c(1,1), col=c("red", "blue"))
+par(mfcol=c(2, 1));
+
+n <- empty.dimnames(tapply(pdata.workday$steps, pdata.workday$interval, mean, na.rm = T));
+t <- unique(pdata.workday$interval);
+steps <- data.frame(t=t, n=n);
+plot(
+    steps,
+    type="l",
+    ylab = "Average Steps", 
+    xlab = "Time in Hours",
+    col="red"
+);
+
+n <- empty.dimnames(tapply(pdata.weekend$steps, pdata.weekend$interval, mean, na.rm = T));
+t <- unique(pdata.weekend$interval);
+steps <- data.frame(t=t, n=n);
+plot(
+    steps,
+    type="l",
+    ylab = "Average Steps", 
+    xlab = "Time in Hours",
+    col="green"
+);
+
+legend("topright", c("Weekdays", "Weekends"), lty=c(1,1), col=c("red", "green"))
 ```
 
