@@ -2,9 +2,9 @@
 
 ## Assignment
 
-* [Assignment Rmd](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.Rmd)
-* [Assignment  md](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.md)
-* [Assignment PDF](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.pdf)
+* [Assignment  Rmd](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.Rmd)
+* [Assignment HTML](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.html)
+* [Assignment  PDF](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.pdf)
 
 ## Original Instructions
 
