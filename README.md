@@ -1,18 +1,11 @@
 ## For graders
 
-## Data
+## Assignment
 
-The data for this assignment was downloaded from the course web site:
+* [Assignment Rmd](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.Rmd)
+* [Assignment  md](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.md)
+* [Assignment PDF](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.pdf)
 
-The dataset is stored in a comma-separated-value (CSV) file and there
-are a total of 17,568 observations in this dataset.
+## Original Instructions
 
-
-## Assignment Instructions
-
-* [Results  MD](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.md)
-* [Results PDF](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.pdf)
-
-## Assignment Instructions
-
-* [Assignment](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/Assignment.md)
+* [Instructions](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/Assignment.md)
