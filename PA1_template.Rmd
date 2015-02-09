@@ -139,6 +139,7 @@ plot(
     xlab = "Time in Hours",
     col="red"
 );
+legend("topleft", c("Weekdays"), lty=c(1,1), col=c("red"))
 
 n <- empty.dimnames(tapply(pdata.weekend$steps, pdata.weekend$interval, mean, na.rm = T));
 t <- unique(pdata.weekend$interval);
@@ -150,7 +151,5 @@ plot(
     xlab = "Time in Hours",
     col="green"
 );
-
-legend("topright", c("Weekdays", "Weekends"), lty=c(1,1), col=c("red", "green"))
+legend("topleft", c("Weekends"), lty=c(1,1), col=c("green"))
 ```
-
