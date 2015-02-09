@@ -2,8 +2,8 @@
 
 ## Assignment
 
-* [Assignment  Rmd](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.Rmd)
-* [Assignment HTML](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.html)
+* [Assignment Rmd](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.Rmd)
+* [Assignment  md](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.md)
 
 ## Original Instructions
 
