@@ -3,9 +3,9 @@ title: 'Reproducible Research: Peer Assessment 1'
 author: "Liondance"
 date: "Sunday, January 18, 2015"
 output:
-  html_document: null
-  keep_md: yes
+  html_document: default
   pdf_document: default
+  keep_md: yes
 ---
 
 ### Load libraries
