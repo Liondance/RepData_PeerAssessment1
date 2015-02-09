@@ -1,6 +1,6 @@
 ---
 title: 'Reproducible Research: Peer Assessment 1'
-author: "Enzo Alda"
+author: "Liondance"
 date: "Sunday, January 18, 2015"
 output:
   pdf_document: default
