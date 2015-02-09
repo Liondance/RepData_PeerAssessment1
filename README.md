@@ -1,9 +1,11 @@
-## For graders
 
-## Assignment
+## Completed Assignment (generated md format with plots, for graders)
+
+* [Assignment  md](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.md)
+
+## Completed Assignment (source Rmd format, for graders)
 
 * [Assignment Rmd](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.Rmd)
-* [Assignment  md](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.md)
 
 ## Original Instructions
 
