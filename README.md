@@ -8,4 +8,4 @@
 
 ## Original Instructions
 
-* [Instructions](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/Assignment.md)
+* [Instructions](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/Instructions.md)
