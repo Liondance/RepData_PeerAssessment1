@@ -5,6 +5,10 @@
 
 * [Assignment  md](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.md)
 
+#### generated PDF file
+
+* [Assignment  PDF](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.pdf)
+
 #### source Rmd format
 
 * [Assignment Rmd](https://github.com/Liondance/RepData_PeerAssessment1/blob/master/PA1_template.Rmd)
